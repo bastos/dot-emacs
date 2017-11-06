@@ -10,6 +10,8 @@
 (require 'exec-path-from-shell)
 (require 'evil)
 (require 'helm)
+(require 'imenu)
+(require 'helm-imenu)
 (require 'helm-config)
 (require 'helm-ag)
 (require 'helm-projectile)
@@ -354,6 +356,9 @@
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "C-x k") 'bsts/kill-current-buffer)
 (global-set-key (kbd "s-'") 'helm-swoop)
+(global-set-key (kbd "s-i") 'helm-imenu)
+(global-set-key (kbd "s-I") 'helm-imenu-in-all-buffers)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
