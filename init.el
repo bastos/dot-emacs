@@ -114,13 +114,10 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
-(global-set-key (kbd "C-c e") 'bsts/visit-emacs-config)
-
 ;; Initial mode
 (setq initial-major-mode (quote text-mode))
 
 ;; Neotree
-(global-set-key [f8] 'neotree-toggle)
 (setq neo-theme 'icons)
 
 ;; Theme
@@ -137,12 +134,6 @@
 ;; Meta
 (setq mac-command-modifier 'super)
 (setq mac-option-modifier 'meta)
-
-;; ESC ESC ESC
-(global-set-key (kbd "s-<escape>") 'keyboard-escape-quit)
-
-;; Quit Window
-(global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
 
 ;;Fringe
 (set-face-attribute 'fringe nil :background "white")
@@ -178,16 +169,6 @@
 (evil-mode 1)
 
 ;; Helm settings
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "s-m") #'helm-mini)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
-(global-set-key (kbd "C-x C-b") #'helm-buffers-list)
-(global-set-key (kbd "s-b") #'helm-buffers-list)
-(global-set-key (kbd "s-y") 'helm-show-kill-ring)
-(global-set-key (kbd "s-t") #'helm-projectile-find-file)
-(global-set-key (kbd "s-p") #'helm-projectile-find-file)
-(global-set-key [remap execute-extended-command] #'helm-smex)
-(global-set-key (kbd "M-X") #'helm-smex-major-mode-commands)
 (setq helm-M-x-fuzzy-match t)
 (setq helm-buffers-fuzzy-matching t)
 
@@ -201,21 +182,6 @@
 (setq delete-by-moving-to-trash t
       trash-directory "~/.Trash/emacs")
 
-;; Mac Shortcuts
-(global-set-key (kbd "s-o") #'helm-find-files)
-(global-set-key (kbd "s-s") 'save-buffer)
-(global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
-(global-set-key (kbd "s-v") 'clipboard-yank)
-(global-set-key (kbd "s-x") 'clipboard-kill-region)
-(global-set-key (kbd "s-a") 'mark-whole-buffer)
-(global-set-key (kbd "s-f") 'isearch-forward)
-(global-set-key (kbd "s-g") 'isearch-repeat-forward)
-(global-set-key (kbd "s-z") 'undo)
-(global-set-key (kbd "s-Z") 'redo)
-(global-set-key (kbd "s-l") 'goto-line)
-(global-set-key (kbd "s-F") 'helm-ag-project-root)
-(global-set-key (kbd "s-O") 'occur)
-
 ;; Right Alt set to none, this is useful to write accents like Alt+n a -> ã.
 (when (eq system-type 'darwin)
   (setq mac-right-option-modifier 'none))
@@ -225,8 +191,6 @@
   "Kill the current buffer without prompting."
   (interactive)
   (kill-buffer (current-buffer)))
-
-(global-set-key (kbd "C-x k") 'bsts/kill-current-buffer)
 
 ;; Projectile
 (setq frame-title-format '((:eval (projectile-project-name))))
@@ -312,16 +276,7 @@
 ;; Dumb Jump Mode
 (setq dumb-jump-selector 'helm)
 (dumb-jump-mode)
-(global-set-key (kbd "M-g j") 'dumb-jump-go)
-(global-set-key (kbd "s-j") 'dumb-jump-go)
-(global-set-key (kbd "M-g b") 'dumb-jump-back)
 
-;; Helm Swoop
-(global-set-key (kbd "s-'") 'helm-swoop)
-
-;; Easy Buffers navigation
-(global-set-key (kbd "s-[") 'previous-buffer)
-(global-set-key (kbd "s-]") 'next-buffer)
 
 ;; Fill column
 (setq fill-column 80)
@@ -357,6 +312,44 @@
           (find-file new-name)
           (message "Renamed '%s' -> '%s'" filename new-name))
       (message "Buffer '%s' isn't backed by a file!" (buffer-name)))))
+
+;; Shortcuts
+(global-set-key (kbd "s-o") #'helm-find-files)
+(global-set-key (kbd "s-s") 'save-buffer)
+(global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
+(global-set-key (kbd "s-v") 'clipboard-yank)
+(global-set-key (kbd "s-x") 'clipboard-kill-region)
+(global-set-key (kbd "s-a") 'mark-whole-buffer)
+(global-set-key (kbd "s-f") 'isearch-forward)
+(global-set-key (kbd "s-g") 'isearch-repeat-forward)
+(global-set-key (kbd "s-z") 'undo)
+(global-set-key (kbd "s-Z") 'redo)
+(global-set-key (kbd "s-l") 'goto-line)
+(global-set-key (kbd "s-F") 'helm-ag-project-root)
+(global-set-key (kbd "s-O") 'occur)
+(global-set-key (kbd "M-s-[") 'indent-according-to-mode)
+(global-set-key (kbd "s-/") 'comment-line)
+(global-set-key (kbd "s-[") 'previous-buffer)
+(global-set-key (kbd "s-]") 'next-buffer)
+(global-set-key (kbd "M-g j") 'dumb-jump-go)
+(global-set-key (kbd "s-j") 'dumb-jump-go)
+(global-set-key (kbd "M-g b") 'dumb-jump-back)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "s-m") #'helm-mini)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(global-set-key (kbd "C-x C-b") #'helm-buffers-list)
+(global-set-key (kbd "s-b") #'helm-buffers-list)
+(global-set-key (kbd "s-y") 'helm-show-kill-ring)
+(global-set-key (kbd "s-t") #'helm-projectile-find-file)
+(global-set-key (kbd "s-p") #'helm-projectile-find-file)
+(global-set-key [remap execute-extended-command] #'helm-smex)
+(global-set-key (kbd "M-X") #'helm-smex-major-mode-commands)
+(global-set-key (kbd "C-c e") 'bsts/visit-emacs-config)
+(global-set-key (kbd "s-<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
+(global-set-key [f8] 'neotree-toggle)
+(global-set-key (kbd "C-x k") 'bsts/kill-current-buffer)
+(global-set-key (kbd "s-'") 'helm-swoop)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
