@@ -7,6 +7,7 @@
 
 ;; Package
 (require 'all-the-icons)
+(require 'exec-path-from-shell)
 (require 'evil)
 (require 'helm)
 (require 'helm-config)
@@ -231,14 +232,6 @@
 (setq company-minimum-prefix-length 2)
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; Backup settings
-(defvar backup-dir "~/.emacs.d/backups/")
-(setq backup-directory-alist (list (cons "." backup-dir)))
-(setq make-backup-files nil)
-
-;; Auto save
-(setq auto-save-default nil)
-
 ;; Whitespaces
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
@@ -312,6 +305,17 @@
           (find-file new-name)
           (message "Renamed '%s' -> '%s'" filename new-name))
       (message "Buffer '%s' isn't backed by a file!" (buffer-name)))))
+
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+;; autosave the undo-tree history
+(setq undo-tree-history-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq undo-tree-auto-save-history t)
 
 ;; Shortcuts
 (global-set-key (kbd "s-o") #'helm-find-files)
