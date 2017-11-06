@@ -1,0 +1,37 @@
+# Elisp byte code
+*.elc
+
+# DO NOT UNIGNORE THIS FILE!
+/custom.el
+
+/elpa/
+/.cask/
+/auto-save-list/
+/.backup/
+.last-package-update-day
+/tutorial/
+/.emacs.desktop*
+/.mc-lists.el
+/smex-items
+/bookmarks
+/history
+/ido.last*
+/places
+/projectile-bookmarks.eld
+/projectile.cache
+/recentf
+/semanticdb/
+/session.*
+/tramp
+/tramp-auto-save
+/url/
+/var/
+/abbrev_defs
+/cider-repl-history
+/eww-bookmarks
+/.sx
+/ensime/
+/company-statistics-cache.el
+/eshell/
+/network-security.data
+/anaconda-mode/
