@@ -49,10 +49,13 @@
 (require 'xref-js2)
 (require 'company-flow)
 (require 'rjsx-mode)
+(require 'ace-window)
+(require 'multiple-cursors)
 
 ;; Packages
 (auto-package-update-maybe)
 
+;; exec-path-from-shell
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
@@ -281,7 +284,7 @@
   "Transpose two windows.  If more or less than two windows are visible, error."
   (interactive)
   (unless (= 2 (count-windows))
-    (error "There are not 2 windows."))
+    (error "There are not 2 windows"))
   (let* ((windows (window-list))
          (w1 (car windows))
          (w2 (nth 1 windows))
@@ -358,7 +361,14 @@
 (global-set-key (kbd "s-'") 'helm-swoop)
 (global-set-key (kbd "s-i") 'helm-imenu)
 (global-set-key (kbd "s-I") 'helm-imenu-in-all-buffers)
-
+(global-set-key (kbd "s-w") 'ace-window)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "s-<down>") 'mc/mark-next-like-this)
+(global-set-key (kbd "s-<up>") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(define-key mc/keymap (kbd "<return>") nil)
+;; Mouse bindings
+(global-set-key (kbd "s-<mouse-1>") 'mc/add-cursor-on-click)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -367,7 +377,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (exec-path-from-shell json-mode company-flow xref-js2 rjsx-mode js2-refactor js2-mode apib-mode auto-package-update helm-descbinds dumb-jump yaml-mode which-key smartparens smart-mode-line ruby-electric redo+ rbenv org-bullets nlinum-relative neotree magit leuven-theme inf-ruby helm-swoop helm-smex helm-projectile helm-fuzzier helm-flx helm-dash helm-ag haml-mode git-gutter-fringe flycheck evil company all-the-icons))))
+    (evil-mc ace-window highlight-indentation exec-path-from-shell json-mode company-flow xref-js2 rjsx-mode js2-refactor js2-mode apib-mode auto-package-update helm-descbinds dumb-jump yaml-mode which-key smartparens smart-mode-line ruby-electric redo+ rbenv org-bullets nlinum-relative neotree magit leuven-theme inf-ruby helm-swoop helm-smex helm-projectile helm-fuzzier helm-flx helm-dash helm-ag haml-mode git-gutter-fringe flycheck evil company all-the-icons))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
