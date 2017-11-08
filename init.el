@@ -341,6 +341,7 @@
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "C-x k") 'bsts/kill-current-buffer)
 (global-set-key (kbd "s-w") 'ace-window)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Clipboard
 (global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
