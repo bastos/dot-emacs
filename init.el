@@ -323,26 +323,37 @@
 (setq undo-tree-auto-save-history t)
 
 ;; Shortcuts
-(global-set-key (kbd "s-o") #'helm-find-files)
 (global-set-key (kbd "s-s") 'save-buffer)
-(global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
-(global-set-key (kbd "s-v") 'clipboard-yank)
-(global-set-key (kbd "s-x") 'clipboard-kill-region)
 (global-set-key (kbd "s-a") 'mark-whole-buffer)
 (global-set-key (kbd "s-f") 'isearch-forward)
 (global-set-key (kbd "s-g") 'isearch-repeat-forward)
 (global-set-key (kbd "s-z") 'undo)
 (global-set-key (kbd "s-Z") 'redo)
 (global-set-key (kbd "s-l") 'goto-line)
-(global-set-key (kbd "s-F") 'helm-ag-project-root)
 (global-set-key (kbd "s-O") 'occur)
 (global-set-key (kbd "M-s-[") 'indent-according-to-mode)
 (global-set-key (kbd "s-/") 'comment-line)
 (global-set-key (kbd "s-[") 'previous-buffer)
 (global-set-key (kbd "s-]") 'next-buffer)
+(global-set-key (kbd "C-c e") 'bsts/visit-emacs-config)
+(global-set-key (kbd "s-<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
+(global-set-key [f8] 'neotree-toggle)
+(global-set-key (kbd "C-x k") 'bsts/kill-current-buffer)
+(global-set-key (kbd "s-w") 'ace-window)
+
+;; Clipboard
+(global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
+(global-set-key (kbd "s-v") 'clipboard-yank)
+(global-set-key (kbd "s-x") 'clipboard-kill-region)
+
+;; Dumb Jump
 (global-set-key (kbd "M-g j") 'dumb-jump-go)
 (global-set-key (kbd "s-j") 'dumb-jump-go)
 (global-set-key (kbd "M-g b") 'dumb-jump-back)
+
+;; Helm
+(global-set-key (kbd "s-o") #'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "s-m") #'helm-mini)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
@@ -353,34 +364,24 @@
 (global-set-key (kbd "s-p") #'helm-projectile-find-file)
 (global-set-key [remap execute-extended-command] #'helm-smex)
 (global-set-key (kbd "M-X") #'helm-smex-major-mode-commands)
-(global-set-key (kbd "C-c e") 'bsts/visit-emacs-config)
-(global-set-key (kbd "s-<escape>") 'keyboard-escape-quit)
-(global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
-(global-set-key [f8] 'neotree-toggle)
-(global-set-key (kbd "C-x k") 'bsts/kill-current-buffer)
 (global-set-key (kbd "s-'") 'helm-swoop)
 (global-set-key (kbd "s-i") 'helm-imenu)
 (global-set-key (kbd "s-I") 'helm-imenu-in-all-buffers)
-(global-set-key (kbd "s-w") 'ace-window)
+(global-set-key (kbd "s-F") 'helm-ag-project-root)
+
+;; multi-cursors.el
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "s-<down>") 'mc/mark-next-like-this)
 (global-set-key (kbd "s-<up>") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (define-key mc/keymap (kbd "<return>") nil)
+
 ;; Mouse bindings
 (global-set-key (kbd "s-<mouse-1>") 'mc/add-cursor-on-click)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (evil-mc ace-window highlight-indentation exec-path-from-shell json-mode company-flow xref-js2 rjsx-mode js2-refactor js2-mode apib-mode auto-package-update helm-descbinds dumb-jump yaml-mode which-key smartparens smart-mode-line ruby-electric redo+ rbenv org-bullets nlinum-relative neotree magit leuven-theme inf-ruby helm-swoop helm-smex helm-projectile helm-fuzzier helm-flx helm-dash helm-ag haml-mode git-gutter-fringe flycheck evil company all-the-icons))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; Aliases
+(defalias 'rs 'replace-string)
+
+;; custom.el
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
