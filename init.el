@@ -23,6 +23,7 @@
 (require 'company)
 (require 'which-key)
 (require 'magit)
+(require 'evil-magit)
 (require 'helm-smex)
 (require 'helm-flx)
 (require 'helm-fuzzier)
@@ -54,6 +55,9 @@
 
 ;; Packages
 (auto-package-update-maybe)
+
+;; Cursor bar
+(setq-default cursor-type 'bar)
 
 ;; exec-path-from-shell
 (when (memq window-system '(mac ns x))
@@ -130,7 +134,8 @@
 (load-theme 'leuven t)
 
 ;; Font
-(set-frame-font "Monaco 14")
+;; (set-frame-font "IBM Plex Mono 15")
+(set-frame-font "Monaco 15")
 
 ;; Smart mode line
 (setq sml/theme 'light)
@@ -342,6 +347,10 @@
 (global-set-key (kbd "C-x k") 'bsts/kill-current-buffer)
 (global-set-key (kbd "s-w") 'ace-window)
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "<home>") 'beginning-of-buffer)
+(global-set-key (kbd "<end>") 'end-of-buffer)
+(global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "M-n") 'forward-paragraph)
 
 ;; Clipboard
 (global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
