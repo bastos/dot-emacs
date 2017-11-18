@@ -7,8 +7,9 @@
 
 ;; Package
 (require 'all-the-icons)
+(require 'org)
 (require 'exec-path-from-shell)
-(require 'evil)
+;; (require 'evil)
 (require 'helm)
 (require 'imenu)
 (require 'helm-imenu)
@@ -23,7 +24,7 @@
 (require 'company)
 (require 'which-key)
 (require 'magit)
-(require 'evil-magit)
+;; (require 'evil-magit)
 (require 'helm-smex)
 (require 'helm-flx)
 (require 'helm-fuzzier)
@@ -62,6 +63,10 @@
 ;; exec-path-from-shell
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+
+;; org mode
+(setq org-todo-keywords
+  '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
 
 ;; Disable JS Hint
 (setq-default flycheck-disabled-checkers
@@ -174,10 +179,10 @@
             (define-key magit-mode-map (kbd ",o") 'delete-other-windows)))
 
 ;;; Git Commit Mode (a Magit minor mode):
-(add-hook 'git-commit-mode-hook 'evil-insert-state)
+;; (add-hook 'git-commit-mode-hook 'evil-insert-state)
 
 ;; Evil mode
-(evil-mode 1)
+;; (evil-mode t)
 
 ;; Helm settings
 (setq helm-M-x-fuzzy-match t)
@@ -389,8 +394,15 @@
 ;; Mouse bindings
 (global-set-key (kbd "s-<mouse-1>") 'mc/add-cursor-on-click)
 
+;; Magit
+(global-set-key (kbd "C-c g") 'magit-file-popup)
+
 ;; Aliases
+(defalias 'g 'helm-ag)
+(defalias 'rr 'reverse-region)
 (defalias 'rs 'replace-string)
+(defalias 'blame 'magit-blame)
+(defalias 'status 'magit-status)
 
 ;; custom.el
 (setq custom-file "~/.emacs.d/custom.el")
